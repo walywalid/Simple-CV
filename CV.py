@@ -24,21 +24,6 @@ def load_image():
     except:
         messagebox.showerror("Error", "Entered path of image or extension is incorrect")
 
-def load_video():
-    path_video = path_directory.get()
-    if path_video == '':
-        messagebox.showerror("Error", "Enter a valid path of video with extension")
-        return
-    try:
-        vid = cv2.VideoCapture(path_video)
-        ret, frame = vid.read()
-        k = 0
-        while k != 27:
-            ret, frame = vid.read()
-            cv2.imshow('Video Playing',frame)
-            k = cv2.waitKey(40)
-    except:
-        messagebox.showerror("Error", "Entered path of video or extension is incorrect")
 
 
 def blur_img():
@@ -264,7 +249,7 @@ def up_sampling():
 
 def down_sample():
     img = orig_img.copy()
-    img = cv2.resize(img,(300,300))
+    img = cv2.resize(img,(250,250))
 
     img2 = Image.fromarray(img)
     global img_box2
@@ -297,7 +282,6 @@ frame_features = Frame(root,width = 400,height = 200, bd = 2)
 
 btn_reset = Button(frame_features,command = reset, text = 'Reset')
 btn_imageload = Button(frame_btns,command = load_image, text = 'Load Image')
-btn_videoload = Button(frame_btns,command = load_video, text = 'Load Video')
 btn_noise = Button(frame_btns, command = add_noise, text = 'Add Noise')
 btn_erode = Button(frame_btns, command = erode, text = 'Erosion')
 btn_dilate = Button(frame_btns,command = dilate, text = 'Dilation')
